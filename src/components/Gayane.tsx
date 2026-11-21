@@ -33,6 +33,7 @@ export function Gayane({
   className,
   style,
   holding,
+  lying,
 }: {
   wear?: ClothId[];
   mood?: Mood;
@@ -41,14 +42,15 @@ export function Gayane({
   className?: string;
   style?: CSSProperties;
   holding?: string;
+  lying?: boolean;
 }) {
   const w = new Set(wear);
   const dress = w.has('vestido');
   const pj = w.has('pijama');
   return (
     <svg
-      viewBox="0 0 200 410"
-      className={'gayane ' + (walking ? 'walking ' : '') + (className || '')}
+      viewBox={lying ? '0 0 410 200' : '0 0 200 410'}
+      className={'gayane ' + (walking ? 'walking ' : '') + (waving ? 'wave ' : '') + (className || '')}
       style={style}
       aria-label="Gayane"
     >
@@ -74,7 +76,8 @@ export function Gayane({
           <rect width="8" height="4" fill="#f6b6cc" />
         </pattern>
       </defs>
-      <ellipse cx="100" cy="402" rx="52" ry="7" fill="rgba(80,20,40,.15)" />
+      <g transform={lying ? 'translate(0,200) rotate(-90)' : undefined}>
+      {!lying && <ellipse cx="100" cy="402" rx="52" ry="7" fill="rgba(80,20,40,.15)" />}
 
       <g className="g-body">
         {/* hair back */}
@@ -292,6 +295,7 @@ export function Gayane({
             </g>
           )}
         </g>
+      </g>
       </g>
     </svg>
   );
