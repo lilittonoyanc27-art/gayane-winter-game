@@ -3,7 +3,7 @@ import { Phrase, T } from '../core/translate';
 import { p, type P, type SceneId } from '../core/types';
 import { sfx } from '../core/sound';
 import { award, setState, totalStars, useGame } from '../core/store';
-import { autoSay } from '../core/speech';
+import { autoSay, speak } from '../core/speech';
 
 /* ---------------- navigation ---------------- */
 type NavListener = (s: SceneId) => void;
@@ -123,6 +123,10 @@ export function Feedback({ fb, onClose }: { fb: Fb | null; onClose?: () => void 
     if (fb) {
       fb.ok ? sfx.success() : sfx.error();
       autoSay(fb.p);
+      if (onClose) {
+        const t = window.setTimeout(onClose, fb.ok ? 4500 : 9000);
+        return () => window.clearTimeout(t);
+      }
     }
   }, [fb]);
   if (!fb) return null;
@@ -132,7 +136,12 @@ export function Feedback({ fb, onClose }: { fb: Fb | null; onClose?: () => void 
       <div className="fb-body">
         <Phrase p={fb.p} />
         {fb.extra?.map((e) => (
-          <Phrase key={e.es} p={e} className="fb-extra" />
+          <div key={e.es} className="fb-extra">
+            <T p={e} />
+            <button className="tool mini" onClick={() => speak(e)}>
+              🔊
+            </button>
+          </div>
         ))}
       </div>
       {onClose && (

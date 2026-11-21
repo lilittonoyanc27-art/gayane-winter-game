@@ -73,6 +73,7 @@ export interface DragOpts {
   onStart?: () => void;
   onEnd?: (dropped: boolean, x: number, y: number) => void;
   disabled?: boolean;
+  center?: boolean;
 }
 
 /** Returns an onPointerDown handler; drag begins after a small movement, otherwise it is a tap. */
@@ -91,8 +92,8 @@ export function useDraggable(payload: Payload, opts: DragOpts) {
     const sy = e.clientY;
     let started = false;
     let over: HTMLElement | null = null;
-    const ox = sx - r.left - r.width / 2;
-    const oy = sy - r.top - r.height / 2;
+    const ox = o.current.center ? 0 : sx - r.left - r.width / 2;
+    const oy = o.current.center ? 0 : sy - r.top - r.height / 2;
 
     const move = (ev: PointerEvent) => {
       if (!started && Math.hypot(ev.clientX - sx, ev.clientY - sy) > 7) {

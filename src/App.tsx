@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from 'react';
+import { Component, useEffect, useState, type ReactNode } from 'react';
 import type { SceneId } from './core/types';
 import { setNavListener } from './components/UI';
 import { TranslationLayer } from './core/translate';
@@ -42,6 +42,27 @@ function initialScene(): SceneId {
   return h in SCENES ? h : 'title';
 }
 
+class Boundary extends Component<{ children: ReactNode }, { err: boolean }> {
+  state = { err: false };
+  static getDerivedStateFromError() {
+    return { err: true };
+  }
+  render() {
+    if (this.state.err)
+      return (
+        <div className="modal-wrap">
+          <div className="modal">
+            <p>¡Uy! Algo ha salido mal. · Ինչ-որ բան սխալ գնաց։</p>
+            <button className="btn btn-primary" onClick={() => (location.hash = 'home', location.reload())}>
+              🏠 Volver a casa
+            </button>
+          </div>
+        </div>
+      );
+    return this.props.children;
+  }
+}
+
 export default function App() {
   const [scene, setScene] = useState<SceneId>(initialScene);
   const [key, setKey] = useState(0);
@@ -64,7 +85,7 @@ export default function App() {
   return (
     <div className="app">
       <main className="scene-wrap fade-in" key={key}>
-        {SCENES[scene]()}
+        <Boundary key={key}>{SCENES[scene]()}</Boundary>
       </main>
       <DragLayer />
       <TranslationLayer />
