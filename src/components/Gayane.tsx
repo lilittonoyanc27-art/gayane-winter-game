@@ -81,7 +81,7 @@ export function Gayane({
 
       <g className="g-body">
         {/* hair back */}
-        <path d="M70 62 C63 112 62 168 72 206 L128 206 C138 168 137 112 130 62 Z" fill={HAIR} />
+        <path d="M72 60 Q74 43 100 42 Q126 43 128 60 C132 82 132 109 130 136 Q124 142 116 138 L122 107 L121 76 Q100 58 79 76 L78 107 L84 138 Q76 142 70 136 C68 109 68 82 72 60 Z" fill={HAIR} />
 
         {/* legs */}
         <g className="g-leg g-leg-l">
@@ -233,7 +233,7 @@ export function Gayane({
             
           </g>
         )}
-        <g className="g-head" transform="translate(100 102) scale(0.78) translate(-100 -102)">
+        <g transform="translate(100 102) scale(0.78) translate(-100 -102)">
           <ellipse cx="100" cy="66" rx="33" ry="37" fill={SKIN} />
           <ellipse cx="67" cy="70" rx="5" ry="8" fill={SKIN_SH} />
           <ellipse cx="133" cy="70" rx="5" ry="8" fill={SKIN_SH} />
