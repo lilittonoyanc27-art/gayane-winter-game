@@ -62,6 +62,9 @@ export const sfx = {
   whoosh: () => on() && noise(0.35, 0.05, 600),
   coin: () => on() && (tone(1200, 0.08, 'square', 0.03), tone(1600, 0.15, 'square', 0.03, 0.06)),
   star: () => on() && [784, 988, 1175, 1568].forEach((f, i) => tone(f, 0.4, 'triangle', 0.07, i * 0.12)),
+  chime: () => on() && [659, 831, 988].forEach((f, i) => tone(f, 0.7, 'sine', 0.1, i * 0.32)),
+  beep: () => on() && [0, 0.2, 0.4].forEach((d) => tone(1250, 0.14, 'square', 0.05, d)),
+  ding: () => on() && tone(1320, 0.5, 'sine', 0.1),
 };
 
 /* ---- gentle music box loop ---- */

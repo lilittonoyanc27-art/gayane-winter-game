@@ -202,7 +202,7 @@ export function Confetti({ n = 40 }: { n?: number }) {
       left: Math.random() * 100,
       delay: Math.random() * 1.5,
       dur: 2.5 + Math.random() * 2,
-      ch: ['❄', '💗', '✨', '★', '❅'][i % 5],
+      ch: ['✦', '✧', '•', '✦', '·'][i % 5],
       size: 14 + Math.random() * 18,
     })),
   );

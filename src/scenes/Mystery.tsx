@@ -30,7 +30,7 @@ const OBJS: { id: string; room: Room; icon: string; name: P; nothing: P }[] = [
   { id: 'osito', room: 'dormitorio', icon: '🧸', name: p('el osito', 'արջուկը'), nothing: p('El osito no sabe nada. ¡Es un osito!', 'Արջուկը ոչինչ չգիտի։ Նա արջուկ է։') },
   { id: 'lampara', room: 'dormitorio', icon: '🪔', name: p('la lámpara', 'լամպը'), nothing: p('La lámpara da una luz muy bonita, nada más.', 'Լամպը շատ գեղեցիկ լույս է տալիս, ուրիշ ոչինչ։') },
   { id: 'armario', room: 'vestidor', icon: '🚪', name: p('el armario', 'պահարանը'), nothing: p('Solo hay ropa de invierno.', 'Միայն ձմեռային հագուստ կա։') },
-  { id: 'espejo', room: 'vestidor', icon: '🪞', name: p('el espejo', 'հայելին'), nothing: p('Me veo en el espejo. ¡Qué guapa!', 'Ինձ տեսնում եմ հայելում։ Ինչ գեղեցիկ եմ։') },
+  { id: 'espejo', room: 'vestidor', icon: '🪞', name: p('el espejo', 'հայելին'), nothing: p('Me miro en el espejo. Aquí no hay ninguna pista.', 'Նայում եմ հայելուն։ Այստեղ ոչ մի հուշում չկա։') },
   { id: 'cajon', room: 'vestidor', icon: '🗄️', name: p('el cajón', 'դարակը'), nothing: p('En el cajón hay calcetines y guantes.', 'Դարակում գուլպաներ և ձեռնոցներ կան։') },
   { id: 'puerta', room: 'entrada', icon: '🚪', name: p('la puerta de la vecina', 'հարևանուհու դուռը'), nothing: p('Ahora no quiero molestar a la vecina.', 'Հիմա չեմ ուզում անհանգստացնել հարևանուհուն։') },
   { id: 'telefono', room: 'entrada', icon: '📱', name: p('el teléfono', 'հեռախոսը'), nothing: p('No tengo mensajes nuevos.', 'Նոր հաղորդագրություններ չունեմ։') },
@@ -327,7 +327,7 @@ export function Mystery() {
                 </div>
               </div>
               <div className="note-card letter">
-                <Phrase p={p('Querida Gayane: gracias por tu sonrisa y por tu ayuda. Esta bufanda te dará calor todo el invierno. Con cariño, Carmen y Sofía.', 'Սիրելի Գայանե, շնորհակալություն քո ժպիտի և օգնության համար։ Այս շարֆը քեզ կտաքացնի ամբողջ ձմեռ։ Սիրով՝ Կարմեն և Սոֆիա։')} big />
+                <Phrase p={p('Querida Gayane: gracias por tu sonrisa y por tu ayuda. Esta bufanda te dará calor todo el invierno. Un abrazo, Carmen y Sofía.', 'Սիրելի Գայանե, շնորհակալություն քո ժպիտի և օգնության համար։ Այս շարֆը քեզ կտաքացնի ամբողջ ձմեռ։ Ջերմ բարևներով՝ Կարմեն և Սոֆիա։')} big />
               </div>
               {!fin && (
                 <div className="center-row">

@@ -154,7 +154,7 @@ export function Wardrobe() {
         <Reward
           id={'wardrobe:' + task.id}
           stars={starsFor(mistakes)}
-          message={p('¡Qué guapa estás! Ya puedes salir.', 'Ինչ գեղեցիկ ես։ Արդեն կարող ես դուրս գալ։')}
+          message={p('¡Qué elegante! Ya puedes salir.', 'Ինչ նրբագեղ է։ Արդեն կարող ես դուրս գալ։')}
           onNext={next}
           onAgain={() => {
             setWear(['pijama']);

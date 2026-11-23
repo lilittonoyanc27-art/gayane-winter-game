@@ -23,6 +23,23 @@ export interface GameState {
   decorLayout: PlacedItem[] | null;
   mysteryChapter: number;
   translateMode: boolean;
+  trip: Trip;
+}
+
+/** State of Gayane's journey (airport → plane → arrival), kept between scenes. */
+export interface Trip {
+  bagChecked: boolean;
+  boardingPass: boolean;
+  passedSecurity: boolean;
+  gate: string;
+  seat: string;
+  bought: string[];
+  seated: boolean;
+  bagCollected: boolean;
+}
+export const freshTrip = (): Trip => ({ bagChecked: false, boardingPass: false, passedSecurity: false, gate: 'B14', seat: '18A', bought: [], seated: false, bagCollected: false });
+export function setTrip(part: Partial<Trip>) {
+  setState((s) => ({ ...s, trip: { ...s.trip, ...part } }));
 }
 
 const KEY = 'gayane-invierno-v1';
@@ -36,6 +53,7 @@ const initial = (): GameState => ({
   decorLayout: null,
   mysteryChapter: 0,
   translateMode: false,
+  trip: freshTrip(),
 });
 
 function load(): GameState {
@@ -44,7 +62,7 @@ function load(): GameState {
     if (!raw) return initial();
     const parsed = JSON.parse(raw);
     const base = initial();
-    return { ...base, ...parsed, settings: { ...base.settings, ...(parsed.settings || {}) }, translateMode: false };
+    return { ...base, ...parsed, settings: { ...base.settings, ...(parsed.settings || {}) }, trip: { ...base.trip, ...(parsed.trip || {}) }, translateMode: false };
   } catch {
     return initial();
   }

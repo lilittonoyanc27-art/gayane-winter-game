@@ -54,3 +54,45 @@ export function autoSay(ph: P) {
 export function stopSpeech() {
   if (speechAvailable()) speechSynthesis.cancel();
 }
+
+/* ---------------- speech recognition (es-ES) ---------------- */
+export const recognitionAvailable = () =>
+  typeof window !== 'undefined' && !!((window as any).SpeechRecognition || (window as any).webkitSpeechRecognition);
+
+/** Listen once in Spanish. Resolves with up to 3 alternatives. */
+export function listenEs(): Promise<string[]> {
+  return new Promise((resolve, reject) => {
+    const R = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    if (!R) return reject(new Error('unsupported'));
+    stopSpeech();
+    const r = new R();
+    r.lang = 'es-ES';
+    r.interimResults = false;
+    r.maxAlternatives = 3;
+    let done = false;
+    r.onresult = (e: any) => {
+      done = true;
+      const alts: string[] = [];
+      for (let i = 0; i < e.results[0].length; i++) alts.push(e.results[0][i].transcript);
+      resolve(alts);
+    };
+    r.onerror = (e: any) => { if (!done) { done = true; reject(e); } };
+    r.onend = () => { if (!done) { done = true; reject(new Error('silence')); } };
+    try { r.start(); } catch (err) { reject(err); }
+  });
+}
+
+const normEs = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[¿?¡!.,;:«»"]/g, ' ').replace(/\s+/g, ' ').trim();
+/** Similarity 0..1 between what was said and the expected sentence (word overlap, order tolerant). */
+export function similarity(said: string, target: string) {
+  const a = normEs(said).split(' ').filter(Boolean);
+  const b = normEs(target).split(' ').filter(Boolean);
+  if (!b.length) return 0;
+  const pool = [...a];
+  let hit = 0;
+  for (const w of b) {
+    const i = pool.findIndex((x) => x === w || (w.length > 4 && x.slice(0, 4) === w.slice(0, 4)));
+    if (i >= 0) { hit++; pool.splice(i, 1); }
+  }
+  return hit / Math.max(b.length, a.length * 0.8);
+}

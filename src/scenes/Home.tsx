@@ -33,7 +33,7 @@ const ROOMS: { id: RoomId; name: P }[] = [
 const OBJS: Obj[] = [
   { id: 'cama', room: 'dormitorio', icon: '🛏️', x: 30, y: 8, size: 3.6, label: p('La cama', 'Մահճակալ'), say: p('Buenos días. ¡Qué bien he dormido!', 'Բարի լույս։ Ինչ լավ եմ քնել։'), game: 'morning' },
   { id: 'lampara', room: 'dormitorio', icon: '🪔', x: 75, y: 30, size: 2.2, label: p('La lámpara', 'Լամպ'), say: p('Enciendo la lámpara.', 'Միացնում եմ լամպը։'), toggle: true },
-  { id: 'osito', room: 'dormitorio', icon: '🧸', x: 62, y: 8, size: 2, label: p('El osito', 'Արջուկ'), say: p('Mi osito de peluche se llama Copito.', 'Իմ փափուկ արջուկի անունը Կոպիտո է։') },
+  { id: 'libro', room: 'dormitorio', icon: '📖', x: 62, y: 8, size: 2, label: p('Mi novela', 'Իմ վեպը'), say: p('Estoy leyendo una novela muy interesante.', 'Շատ հետաքրքիր վեպ եմ կարդում։') },
   { id: 'armario', room: 'vestidor', icon: '🚪', x: 30, y: 8, size: 3.8, label: p('El armario', 'Զգեստապահարան'), say: p('¿Qué me pongo hoy?', 'Ի՞նչ հագնեմ այսօր։'), game: 'wardrobe' },
   { id: 'espejo', room: 'vestidor', icon: '🪞', x: 72, y: 14, size: 3, label: p('El espejo', 'Հայելի'), say: p('Me miro en el espejo. ¡Hoy estoy muy contenta!', 'Նայում եմ հայելուն։ Այսօր շատ ուրախ եմ։') },
   { id: 'arbol', room: 'salon', icon: '🎄', x: 14, y: 8, size: 3.8, label: p('El árbol de Navidad', 'Տոնածառ'), say: p('Enciendo las luces del árbol.', 'Միացնում եմ տոնածառի լույսերը։'), toggle: true },
@@ -91,7 +91,7 @@ export function Home() {
 
   return (
     <div className="scene scene-home">
-      <SceneHeader title={p('El invierno mágico de Gayane', 'Գայանեի կախարդական ձմեռը')} icon="❄️" back="title" />
+      <SceneHeader title={p('Mi apartamento en invierno', 'Իմ բնակարանը ձմռանը')} icon="❄️" back="title" />
       <div className="home-hint">
         <T p={p('Toca un objeto: Gayane va a caminar hasta allí.', 'Հպիր որևէ առարկայի. Գայանեն կքայլի այնտեղ։')} />
       </div>

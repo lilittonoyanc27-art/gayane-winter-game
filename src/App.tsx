@@ -1,7 +1,7 @@
 import { Component, useEffect, useState, type ReactNode } from 'react';
 import type { SceneId } from './core/types';
 import { setNavListener } from './components/UI';
-import { TranslationLayer } from './core/translate';
+import { T, TranslationLayer } from './core/translate';
 import { DragLayer } from './core/dnd';
 import { useGame } from './core/store';
 import { setMusic } from './core/sound';
@@ -19,6 +19,14 @@ import { Mystery } from './scenes/Mystery';
 import { MiniGames } from './scenes/MiniGames';
 import { Dictionary, Review } from './scenes/Dictionary';
 import { Settings } from './scenes/Settings';
+import { Airport } from './scenes/travel/Airport';
+import { Plane } from './scenes/travel/Plane';
+import { Hotel } from './scenes/life/Hotel';
+import { Restaurant } from './scenes/life/Restaurant';
+import { Clothes } from './scenes/life/Clothes';
+import { Cafeteria } from './scenes/life/Cafeteria';
+import { City } from './scenes/life/City';
+import { Planner } from './scenes/life/Planner';
 
 const SCENES: Record<SceneId, () => ReactNode> = {
   title: () => <Title />,
@@ -35,6 +43,14 @@ const SCENES: Record<SceneId, () => ReactNode> = {
   dictionary: () => <Dictionary />,
   review: () => <Review />,
   settings: () => <Settings />,
+  airport: () => <Airport />,
+  plane: () => <Plane />,
+  hotel: () => <Hotel />,
+  restaurant: () => <Restaurant />,
+  clothes: () => <Clothes />,
+  cafe: () => <Cafeteria />,
+  city: () => <City />,
+  planner: () => <Planner />,
 };
 
 function initialScene(): SceneId {
@@ -52,9 +68,9 @@ class Boundary extends Component<{ children: ReactNode }, { err: boolean }> {
       return (
         <div className="modal-wrap">
           <div className="modal">
-            <p>¡Uy! Algo ha salido mal. · Ինչ-որ բան սխալ գնաց։</p>
+            <p><T p={{ es: '¡Uy! Algo ha salido mal.', hy: 'Ինչ-որ բան սխալ գնաց։' }} /></p>
             <button className="btn btn-primary" onClick={() => (location.hash = 'home', location.reload())}>
-              🏠 Volver a casa
+              🏠 <T p={{ es: 'Volver a casa', hy: 'Վերադառնալ տուն' }} />
             </button>
           </div>
         </div>

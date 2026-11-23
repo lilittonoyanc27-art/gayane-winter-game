@@ -26,4 +26,12 @@ export type SceneId =
   | 'minigames'
   | 'dictionary'
   | 'review'
-  | 'settings';
+  | 'settings'
+  | 'airport'
+  | 'plane'
+  | 'hotel'
+  | 'restaurant'
+  | 'clothes'
+  | 'cafe'
+  | 'city'
+  | 'planner';
